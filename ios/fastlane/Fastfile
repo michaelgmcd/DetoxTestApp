@@ -1,0 +1,27 @@
+fastlane_version "2.28.4"
+
+default_platform :ios
+
+platform :ios do
+  desc "Create a debug or release build for end to end testing"
+  lane :build_e2e do |options|
+    if options[:configuration] == "Release"
+      ENV["RCT_NO_LAUNCH_PACKAGER"] = "true"
+    end
+
+    xcbuild(
+      configuration: options[:configuration],
+      derivedDataPath: "#{ENV["APP_ROOT"]}/ios/build",
+      workspace: "./DetoxTestApp.xcworkspace",
+      scheme: "DetoxTestApp",
+      sdk: "iphonesimulator"
+    )
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used
+# No personal data is recorded. Learn more at https://github.com/fastlane/enhancer
