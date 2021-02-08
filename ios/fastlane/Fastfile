@@ -14,7 +14,8 @@ platform :ios do
       derivedDataPath: "#{ENV["APP_ROOT"]}/ios/build",
       workspace: "./DetoxTestApp.xcworkspace",
       scheme: "DetoxTestApp",
-      sdk: "iphonesimulator"
+      sdk: "iphonesimulator",
+      xcargs: "GCC_PREPROCESSOR_DEFINITIONS='$GCC_PREPROCESSOR_DEFINITIONS IS_E2E_TESTING=1'"
     )
   end
 end

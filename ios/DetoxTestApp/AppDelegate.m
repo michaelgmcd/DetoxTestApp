@@ -31,10 +31,12 @@ static void InitializeFlipper(UIApplication *application) {
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
-  
+
+#ifndef IS_E2E_TESTING
   if ([FIRApp defaultApp] == nil) {
     [FIRApp configure];
   }
+#endif
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
